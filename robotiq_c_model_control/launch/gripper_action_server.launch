@@ -1,0 +1,19 @@
+<launch>
+  <!-- The default IP address here is what the gripper ships with, but
+       can be changed in the windows GUI from Robotiq. -->
+  <arg name="gripper_ip" default="192.168.1.11"/>
+
+  <!-- Driver node. -->
+  <node name="robotiq_c_model_driver"
+        pkg="robotiq_c_model_control"
+        type="CModelTcpNode.py"
+        args="$(arg gripper_ip)"
+        output="screen"/>
+
+  <!-- Action server node. -->
+  <node name="CModelActionServer"
+        pkg="robotiq_c_model_control"
+        type="CModelActionServer.py"
+        output="screen"/>
+
+</launch>
