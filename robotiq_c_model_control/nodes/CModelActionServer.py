@@ -72,12 +72,13 @@ class CModelActionServer(object):
         self.activateGripper()
 
         self.action_name_ = action_name
-        self.action_server_ = actionlib.SimpleActionServer(self.action_name_,
+        self.action_server_ = actionlib.SimpleActionServer(self.action_name_+"/gripper_action",
                                                            control_msgs.msg.GripperCommandAction,
                                                            execute_cb = self.execute,
                                                            auto_start = False)
         self.action_server_.start()
         rospy.loginfo("Gripper action server started.")
+        print("Action name: " + self.action_name_);
 
     def getStatus(self):
         self.status_lock_.acquire()
