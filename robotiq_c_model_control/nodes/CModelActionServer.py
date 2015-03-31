@@ -71,8 +71,8 @@ class CModelActionServer(object):
 
         self.activateGripper()
 
-        self.action_name_ = action_name
-        self.action_server_ = actionlib.SimpleActionServer(self.action_name_+"/gripper_action",
+        self.action_name_ = action_name+"/gripper_action"
+        self.action_server_ = actionlib.SimpleActionServer(self.action_name_,
                                                            control_msgs.msg.GripperCommandAction,
                                                            execute_cb = self.execute,
                                                            auto_start = False)
